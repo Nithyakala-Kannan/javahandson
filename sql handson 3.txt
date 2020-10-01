@@ -1,0 +1,76 @@
+1) mysql> select avg(h8) as average_8th_hour_consumption from electricity_reading;
++------------------------------+
+| average_8th_hour_consumption |
++------------------------------+
+|                      44.6667 |
++------------------------------+
+1 row in set (0.00 sec)
+
+2)mysql> select avg(total_units) as average_units_of_electricity from electricity_reading;
++------------------------------+
+| average_units_of_electricity |
++------------------------------+
+|                     750.0000 |
++------------------------------+
+1 row in set (0.00 sec)
+
+3)mysql> select id,avg(payable_amount) as average_payable_amount from bill group by id having avg(payable_amount>400);
++------+------------------------+
+| id   | average_payable_amount |
++------+------------------------+
+|    2 |                  600.5 |
+|    3 |                  450.2 |
++------+------------------------+
+2 rows in set (0.00 sec)
+
+4)mysql> select avg(fine_amount) from bill where payment_date like'2015%';
++------------------+
+| avg(fine_amount) |
++------------------+
+|              300 |
++------------------+
+1 row in set (0.00 sec)
+
+5)mysql> select sum(payable_amount) as sum_payable_amount from bill;
++--------------------+
+| sum_payable_amount |
++--------------------+
+|            1350.95 |
++--------------------+
+1 row in set (0.00 sec)
+
+6)mysql> select sum(payable_amount) as sum_payable_amount from bill where due_date= 2015-09-23;
++--------------------+
+| sum_payable_amount |
++--------------------+
+|               NULL |
++--------------------+
+1 row in set, 1 warning (0.00 sec)
+
+7)mysql> select min(total_units) as min_total_units from bill;
++-----------------+
+| min_total_units |
++-----------------+
+|             100 |
++-----------------+
+1 row in set (0.00 sec)
+
+8)mysql> select payable_amount as second_min_fine_amount from bill order by (payable_amount>360) asc;
++------------------------+
+| second_min_fine_amount |
++------------------------+
+|                 300.25 |
+|                  600.5 |
+|                  450.2 |
++------------------------+
+3 rows in set (0.00 sec)
+
+9)mysql> select month,min(total_units) as minimum_units from bill;
++-------+---------------+
+| month | minimum_units |
++-------+---------------+
+|     9 |           100 |
++-------+---------------+
+1 row in set (0.00 sec)
+
+10)mysql> select stddev(fine_amount) from bill where year(payment_date) like ‘2018%’;

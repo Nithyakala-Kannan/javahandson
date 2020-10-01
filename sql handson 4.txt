@@ -1,0 +1,98 @@
+1) mysql> select owner_name,length(owner_name) as name_length from building group by owner_name;
++------------+-------------+
+| owner_name | name_length |
++------------+-------------+
+| nithya     |           6 |
+| priya      |           5 |
+| kamal      |           5 |
++------------+-------------+
+3 rows in set (0.00 sec)
+
+2)mysql> select owner_name ,contact_number from building order by(length(owner_name)) limit 1;
++------------+----------------+
+| owner_name | contact_number |
++------------+----------------+
+| kamal      | 9557852368     |
++------------+----------------+
+1 row in set (0.00 sec)
+
+3)mysql> select concat(contact_number,'-',email_address) as contact_details from building order by owner_name;
++--------------------------+
+| contact_details          |
++--------------------------+
+| 9557852368-kam@gmail.com |
+| 4467832578-nk@gmail.com  |
+| 9523567679-pri@gmail.com |
++--------------------------+
+3 rows in set (0.00 sec)
+
+4)mysql> select substring(meter_number,1,3) as meter_code from meter order by meter_code desc;
++------------+
+| meter_code |
++------------+
+| 103        |
+| 102        |
+| 101        |
++------------+
+3 rows in set (0.00 sec)
+
+5)mysql> select left(owner_name,3) as name_code,left(contact_number,3) as name_code from building order by owner_name asc;
++-----------+-----------+
+| name_code | name_code |
++-----------+-----------+
+| kam       | 955       |
+| nit       | 446       |
+| pri       | 952       |
++-----------+-----------+
+3 rows in set (0.00 sec)
+
+6)mysql> select * from building where owner_name like '%th%' order by owner_name;
++----+------------+-----------+------------------+----------------+---------------+
+| id | owner_name | address   | building_type_id | contact_number | email_address |
++----+------------+-----------+------------------+----------------+---------------+
+|  1 | nithya     | thanjavur |             1001 | 4467832578     | nk@gmail.com  |
++----+------------+-----------+------------------+----------------+---------------+
+1 row in set (0.00 sec)
+
+7)mysql> select count(*) from bill where fine_amount=0 group by month(due_date) and year('2017');
+Empty set (0.00 sec)
+
+8)mysql> select sum(fine_amount) from bill where due_date between '2013-01-10' and '2015-10-10';
++------------------+
+| sum(fine_amount) |
++------------------+
+|              900 |
++------------------+
+1 row in set (0.00 sec)
+
+9)mysql> select day,total_units from electricity_reading where day between '2013-09-10' and '2015-10-10';
++------------+-------------+
+| day        | total_units |
++------------+-------------+
+| 2015-09-27 |         750 |
+| 2013-11-13 |         750 |
++------------+-------------+
+2 rows in set (0.00 sec)
+
+10)mysql> select due_date,payable_amount from bill where due_date between '2013-01-10' and '2015-10-10';
++------------+----------------+
+| due_date   | payable_amount |
++------------+----------------+
+| 2013-12-17 |         300.25 |
+| 2015-09-23 |          600.5 |
+| 2014-07-05 |          450.2 |
++------------+----------------+
+
+Subqueries
+-----------
+11)mysql> select * from bill b_name join meter m_name where b_name.meter_id=m_name.id order by payable_amount;
+Empty set (0.00 sec)
+
+12)mysql> select mname.meter_number,bname.owner_name,bname.address,bname.contact_number,bname.building_type_id from meter mname join building bname on mname.building_id=bname.id order by mname.meter_number;
+Empty set (0.00 sec)
+
+13)mysql> select c.connection_name,s.from_unit,s.to_unit from slab s join  electricity_connection_type c  on s.connection_type_id = c.id order by s.rate;
+Empty set (0.00 sec)
+
+14)mysql> select b.owner_name,m.meter_number,b2.payable_amount from meter m join building b on m.building_id = b.id join bill b2 on m.id=b2.meter_id order by b.owner_name;
+Empty set (0.00 sec)
