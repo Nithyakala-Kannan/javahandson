@@ -1,0 +1,17 @@
+#resultTable,
+th,
+tr,
+td {
+    font-size: 1.5rem;
+    font-weight: bold;
+    border: 1px solid black;
+    text-align: center;
+}
+td{
+    font-weight : lighter;
+    text-align: center;
+}
+
+
+
+

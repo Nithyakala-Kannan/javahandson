@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Page Title</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel='stylesheet' type='text/css' media='screen' href='main.css'>
+    <script src='./script.js'></script>
+    <style>
+        div{
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+   <div>
+    <h2>Events list</h2>
+
+        Enter the events<input type="text" id="eventName" ><br>
+        <div class="buttons">
+            <button id="push" class="button" title="Add new event">Push</button>
+            <button id="pop" class="button" title="Delete event" >Pop</button>
+            <button id="display" class="button" title="Display Events">Display</button>
+        </div>
+        <div id="successMessage"></div>
+        <div id="result">
+            <ul id="resultTable"></ul>
+        </div>
+    </div>
+</div>
+</body>
+</html>
